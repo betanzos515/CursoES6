@@ -356,3 +356,5 @@ for(let val2 of datos){
  }
 
 
+ let arregloEtiquetas = document.getElementsByTagName('a');
+ 
