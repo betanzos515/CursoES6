@@ -61,7 +61,13 @@ imagenesArreglo.forEach(function(imagen){
 
  //Traversin de Hijo a padre
 
- 
+ const enlaces = document.querySelectorAll('.enlace');
+
+//De está forma accedemos a los nodos padre del elemento que está seleccionado aunque la manera mas recomendada de acceder es con el parentElement 
+ console.log(enlaces[0].parentNode);
+
+ console.log(enlaces[0].parentElement.textContent);
 
 
-   
+ const cursos = document.querySelector('.card');
+ console.log(cursos.parentElement.parentElement.parentElement.children[0].textContent = 'Hola desde Trasversing');;
