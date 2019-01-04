@@ -96,3 +96,31 @@ imagenesArreglo.forEach(function(imagen){
  console.log(enlace);
 
 let primero = localStorage.createElement = 'David';
+
+
+//remplazar elementos 
+
+const nuevoEncabezado = document.createElement('h2');
+nuevoEncabezado.id = 'encabezado';
+console.log(nuevoEncabezado); 
+
+//appendChild() agrega un elemento hijo a quien esté haciendo uso de el
+nuevoEncabezado.appendChild(document.createTextNode('Los mejores cursos'));
+
+//Elemento anterior sera reemplazado
+
+const anterior = document.querySelector('#encabezado');
+
+const elPadre = document.querySelector('#lista-cursos');
+elPadre.replaceChild(nuevoEncabezado,anterior);
+
+
+const elemNuevo = document.createElement('h1');
+
+elemNuevo.appendChild(document.createTextNode('Acabamos de cambiar este elemento'));
+
+elemRemplazar = document.querySelector('#encabezado');
+const elemPadre = document.getElementById('lista-cursos');
+
+elemPadre.replaceChild(elemNuevo,elemRemplazar);
+
