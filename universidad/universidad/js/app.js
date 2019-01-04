@@ -32,7 +32,7 @@ imagenesArreglo.forEach(function(imagen){
  const encabezado2 = document.querySelector('#encabezado');
  encabezado2.innerHTML = "Udemy la mejor plataforma de aprendizaje Online"; */
 
- const navegacion = document.querySelector('#principal');
+/*  const navegacion = document.querySelector('#principal');
  //regresa todos los nodos que contenga ese elemento HTML
  console.log(navegacion.childNodes);
 
@@ -42,7 +42,7 @@ imagenesArreglo.forEach(function(imagen){
  console.log(navegacion.children[0].nodeName);
 
  //nodeType es un metodo el cual nos ayuda a identificar los tipos de nodos que conforman el HTML.
- console.log(navegacion.children[0].nodeType);
+ console.log(navegacion.children[0].nodeType); */
 
  //1 = ELEMENTOS
  //2 = Atributos
@@ -51,7 +51,7 @@ imagenesArreglo.forEach(function(imagen){
  //9 = documentos
  //10 = doctype
 
- console.log(navegacion.children[0].textContent = 'Bienvenidos');
+/*  console.log(navegacion.children[0].textContent = 'Bienvenidos'); */
 
  //El metodo children nos permite acceder a cuantos hijos tenga el elemento de la siguiente manera
 
@@ -74,17 +74,17 @@ imagenesArreglo.forEach(function(imagen){
 
  //hay otra forma de hacer Traversing
 
- const enlaces = document.querySelectorAll('.enlace');
-
+/*  const enlaces = document.querySelectorAll('.enlace');
+ */
 
  //Esta funcion nos toma el elemento que está antes del elemento seleccionado
- console.log(enlaces[4].previousElementSibling);
+ /* console.log(enlaces[4].previousElementSibling);
 
- console.log(enlaces[0].nextElementSibling);
+ console.log(enlaces[0].nextElementSibling); */
 
  //creando elementos con javaScript
 
- const enlace = document.createElement('a');
+ /* const enlace = document.createElement('a');
  //agregamos una classe
  enlace.className = 'enlace';
  //agregamos el ID
@@ -94,7 +94,7 @@ imagenesArreglo.forEach(function(imagen){
  enlace.textContent = 'Este es un nuevo enlace';
 
  console.log(enlace);
-
+ */
 let primero = localStorage.createElement = 'David';
 
 
@@ -123,4 +123,34 @@ elemRemplazar = document.querySelector('#encabezado');
 const elemPadre = document.getElementById('lista-cursos');
 
 elemPadre.replaceChild(elemNuevo,elemRemplazar);
+
+//agregando y quitando enlaces y otros atributos
+
+let enlaces = document.querySelectorAll('.enlace');
+const navegacion = document.querySelector('#principal');
+
+console.log(enlaces[0]);
+//con este metodo podemos remover el elemento directo
+enlaces[0].remove();
+
+//de esta forma se puede eliminar algún elemento desde el padre
+navegacion.removeChild(enlaces[1]);
+
+//aqui vamos a aprender a Eliminar o Agregar atributos como son clases a un elemento
+const primerLi = document.querySelector('.enlace');
+let elemento;
+
+//el metodo .classList() es un metodo que nos permite listar todas las clases que contiene un elemento.
+elemento = primerLi.classList;
+
+console.log(elemento);
+//a los metodos seleccionados se les puede agregar cuantas clases sean necesarias, esto es posible con el metodo .add()
+elemento = primerLi.classList.add('nueva-clase');
+//de igual manera nos permite remover clases a nuestros elementos
+elemento = primerLi.classList.remove('enlace');
+elemento = primerLi.classList;
+console.log(elemento); 
+
+
+
 
