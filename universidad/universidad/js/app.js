@@ -95,4 +95,4 @@ imagenesArreglo.forEach(function(imagen){
 
  console.log(enlace);
 
-
+let primero = localStorage.createElement = 'David';
