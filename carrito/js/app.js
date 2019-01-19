@@ -28,6 +28,7 @@ function agregarCarrito(e){
 }
 
 function leerElemento(elemento){
+    console.log(elemento);
     const infoCurso = {
         imagen:elemento.querySelector('img').src,
         titulo:elemento.querySelector('h4').textContent,
