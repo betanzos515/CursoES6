@@ -28,13 +28,29 @@ class Interfaz{
         presupuestoSpan.innerHTML = `${presupuesto}`;
         restanteSpan.innerHTML = `${presupuesto}`;
     }
+    imprimirMensaje(mensaje,tipo){
+        const div = document.createElement('div');
+        div.classList.add('text-center','alert');
+
+        if(this.tipo === 'error'){
+            div.classList.add('alert-danger');
+        }
+        else{
+            div.classList.add('alert-sucess');
+        }
+        div.appendChild(document.createTextNode(mensaje));
+        
+        //insertar en el DOM 
+        document.querySelector('.primario').insertBefore(div,formulario);
+
+    }
 
 }
 
 
 //Event Listener
 document.addEventListener('DOMContentLoaded',function(){
-    if(presupuestoSemanal == null || presupuestoSemanal == ''){
+    if(presupuestoSemanal == null || presupuestoSemanal == '' || presupuestoSemanal == NaN){
         window.location.reload();
     }
     else{
@@ -47,8 +63,18 @@ document.addEventListener('DOMContentLoaded',function(){
 
 formulario.addEventListener('submit',function(e){
     e.preventDefault();
-    const gastoFormulario = document.getElementById('gasto');
-    const cantidadFormulario = document.getElementById('cantidad');
-    console.log(gastoFormulario.value);
-    console.log(cantidadFormulario.value);
+    const gastoFormulario = document.getElementById('gasto').value;
+    const cantidadFormulario = document.getElementById('cantidad').value;
+
+    const ui = new Interfaz();
+
+    if(gastoFormulario ==='' || cantidadFormulario === ''){
+        //Dos parametros, mensaje y tipo
+        ui.imprimirMensaje('Hubo un problema al ingresar el texto','error');
+    }
+    else
+    {
+        
+    }
+
 })
