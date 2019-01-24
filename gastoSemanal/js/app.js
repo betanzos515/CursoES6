@@ -31,18 +31,61 @@ class Interfaz{
     imprimirMensaje(mensaje,tipo){
         const div = document.createElement('div');
         div.classList.add('text-center','alert');
+        console.log(mensaje);
+        console.log(tipo);
 
-        if(this.tipo === 'error'){
+        if(tipo === 'error'){
             div.classList.add('alert-danger');
         }
         else{
-            div.classList.add('alert-sucess');
+            div.classList.add('alert-success');
         }
         div.appendChild(document.createTextNode(mensaje));
         
         //insertar en el DOM 
         document.querySelector('.primario').insertBefore(div,formulario);
+        
+        setTimeout(function(){
+            div.remove();
+            formulario.reset();
+        },2500);
 
+    }
+
+    agregarGastoListado(gasto,cantidad){
+
+        const gastosListado = document.querySelector('#gastos ul ');
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+        li.innerHTML = `
+            ${gasto}
+            <span class='badge badge-primary badge-pill'> $ ${cantidad}</span>
+        `; 
+        gastosListado.appendChild(li);
+    }
+
+    presupuestoRestante(presupuesto){
+        const restante = document.querySelector('span#restante');
+        const presupuestoRestanteUsuario = cantidadPresupuesto.calcularRestante(presupuesto);
+        restante.innerHTML = `${presupuestoRestanteUsuario}`;
+        this.comprobarPresupuesto();
+    }
+
+    //cambia de color el presupuesto restante;
+    comprobarPresupuesto(){
+        const presupuestoTotal = cantidadPresupuesto.cantidad;
+        const presupuestoRestante = cantidadPresupuesto.restante;
+        
+        //comprobar el 25%
+        if((presupuestoTotal/4) > presupuestoRestante){
+            const restante = document.querySelector('.restante');
+            restante.classList.remove('alert-success','alert-warning');
+            restante.classList.add('alert-danger');
+        }else if((presupuestoTotal / 2) > presupuestoRestante){
+            const restante = document.querySelector('.restante');
+            restante.classList.remove('alert-success');
+            restante.classList.add('alert-warning');
+        }
     }
 
 }
@@ -72,9 +115,11 @@ formulario.addEventListener('submit',function(e){
         //Dos parametros, mensaje y tipo
         ui.imprimirMensaje('Hubo un problema al ingresar el texto','error');
     }
-    else
+    else 
     {
-        
+        ui.imprimirMensaje('Correcto','correcto');
+        ui.agregarGastoListado(gastoFormulario,cantidadFormulario);
+        ui.presupuestoRestante(cantidadFormulario);
     }
 
 })
