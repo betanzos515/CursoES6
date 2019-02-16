@@ -14,7 +14,18 @@ document.getElementById('buscarBtn').addEventListener('click',(e)=>{
     //revisar que tenga escrito el buscador 
 
     if(evento!==''){
-        console.log('Buscando...');
+        eventBrite.obtenerEvento(evento,categoriaSeleccionada)
+        .then(evento =>{
+            const resultado = evento.eventos.events;
+
+            if(resultado.length > 0){
+                ui.limpiarResultadosPrevios();
+                ui.mostrarEventos(resultado);
+            }
+            else{
+                console.log('El arreglo no contiene datos');
+            }
+        })
     }
     else{
         ui.mostrarMensaje('Ingresa un evento en el formulario','alert bg-danger text-center mt-4');
