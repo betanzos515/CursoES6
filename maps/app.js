@@ -27,3 +27,34 @@ const paciente = new Map([
 paciente.set('propiedad1','Primero valor agregado');
 paciente.set('propiedad2','Segundo Valor agregado');
 console.log(paciente);
+
+const arreglo = [2,3,4,5,6,7,8,9,10];
+console.log(arreglo);
+
+const multiplicacion = arreglo.map(x=>{
+    console.log(x*2);
+});
+
+let nuevo = (x,y)=>{
+    console.log(x);
+    console.log(y);
+}
+
+let numero = new Map([
+    ['llave','valor'],
+    ['Segunda','valor']
+]);
+
+console.log(numero);
+
+let pac  = new Map([
+    ['nombre','no definido'],
+    ['Cama','Sin definir']
+]);
+
+pac.set('nombre','David');
+pac.set('Cama','503');
+
+pac.forEach((valor,index)=>{
+    console.log(`valor: ${valor}, dato: ${index}`);
+});
