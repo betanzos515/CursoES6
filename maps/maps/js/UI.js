@@ -12,10 +12,10 @@ class UI{
 
     inicializarMapa(){
         const map = L.map('mapa').setView([19.390519,-99.3739778],6);
-        const enlaceMapa = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        //const enlaceMapa = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy' + enlaceMapa + 'contributors',
+            attribution: '&copy' +  'contributors',
             maxZoom:18,
         }).addTo(map);
 
@@ -34,7 +34,7 @@ class UI{
     }
 
     mostrarPines(datos){
-        console.log(datos);
+        
         //Limpiar los Markers
         this.markers.clearLayers();
 
@@ -92,9 +92,10 @@ class UI{
     filtrarSugerencias(resultado, busqueda){
         
         //filtrar con .filter
-        const filtro = resultado.filter(filtro => filtro.calle.indexOf)
-
+        const filtro = resultado.filter(filtro => filtro.calle.indexOf(busqueda) !== -1);
+        console.log(filtro);
         
         //mostrar los pines
-    }
+        this.mostrarPines(filtro);
+    }   
 }
