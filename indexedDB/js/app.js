@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     //Este metodo solo corre una vez y es ideal para crear el Schema 
     crearDB.onupgradeneeded = (e)=>{
-        console.log("Solo una vez");
+        //El evento es la misma base de datos
+        let db = e.target.result;
+        
     }
 
 })
