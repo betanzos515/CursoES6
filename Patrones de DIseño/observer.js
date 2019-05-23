@@ -13,6 +13,7 @@ let observer = {
         }
     },
     publicarOferta: function(oferta){
+        console.log(oferta)
         for(let i = 0;i < this.suscribers.length;i++){
             if(typeof this.suscribers[i]==='function'){
                 this.suscribers[i](oferta);
@@ -50,20 +51,25 @@ const facebook = {
 observer.crear(udemy);
 observer.crear(facebook);
 
-const juan ={
+/* const juan ={
     compartir: function(oferta){
        console.log("Juan Dice Excelente Oferta !! "+ oferta); 
     }
-}
+} */
 
-const karen = {
+/* const karen = {
     interesa:function(oferta){
         console.log("Karen dice :Me interesa la oferta de "+ oferta); 
     }
-}
+} */
+
+/* udemy.obtenerOfertas(juan.compartir);
+udemy.nuevoCurso(); */
 
 udemy.obtenerOfertas(juan.compartir);
 udemy.obtenerOfertas(karen.interesa);
 udemy.nuevoCurso();
 udemy.cancelarOfertas(karen.interesa);
 udemy.nuevoCurso();
+
+console.log(udemy);
