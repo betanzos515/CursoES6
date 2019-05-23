@@ -21,7 +21,7 @@ let observer = {
     },
     crear:function(objeto){
         for(let i in this){
-            if(this.hasOwnProperty(i)){
+            if(this.hasOwnProperty(i)){             
                  objeto[i] = this[i];
                  objeto.suscribers = [];
             }
@@ -52,15 +52,18 @@ observer.crear(facebook);
 
 const juan ={
     compartir: function(oferta){
-       console.log("Excelente Oferta !! "+ oferta); 
+       console.log("Juan Dice Excelente Oferta !! "+ oferta); 
     }
 }
 
 const karen = {
     interesa:function(oferta){
-        console.log("Me interesa la oferta de "+ oferta); 
+        console.log("Karen dice :Me interesa la oferta de "+ oferta); 
     }
 }
 
 udemy.obtenerOfertas(juan.compartir);
+udemy.obtenerOfertas(karen.interesa);
+udemy.nuevoCurso();
+udemy.cancelarOfertas(karen.interesa);
 udemy.nuevoCurso();
