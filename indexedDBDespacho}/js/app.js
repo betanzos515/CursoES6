@@ -102,10 +102,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         //esto retorna una peticion
         objectStore.openCursor().onsuccess = function(e){
+
+           
             //cursor se va a ubicar en el registro indicado para acceder a los datos
 
             let cursor = e.target.result;
-            /* console.log(cursor.value.cliente); */
 
             if(cursor){
 
@@ -126,10 +127,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
                 const botonBorrar = document.createElement('button');
                 botonBorrar.classList.add('borrar','btn','btn-danger');
-                botonBorrar.innerHTML = `<span aria-hidden='true'>X</span>`;
-                botonBorrar.addEventListener('click',borrarCita);
+                botonBorrar.innerHTML = `<span class='span' aria-hidden='true'>x</span>`;
+                botonBorrar.addEventListener('click',eliminarCita);
                 citaHTML.appendChild(botonBorrar);
-
+                
                 //apend en el padre
                 citas.appendChild(citaHTML);
                 //mostrar los nuevos recursos
@@ -153,8 +154,16 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     }
 
-    function borrarCita(e){
-        console.log(e.target.parentElement.getAttribute('data-cita-id'));
+    function eliminarCita(e){
+        e.preventDefault();
+
+        if(e.target.classList.contains('span')){
+            console.log(e.target.parentElement.parentElement);
+        }
+        else{
+            console.log(e.target.parentElement);
+        }
+        
     }
 });
 
