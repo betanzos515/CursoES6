@@ -73,8 +73,6 @@ document.addEventListener('DOMContentLoaded',()=>{
         
         //esto nos retorna la base de datos
         let objectStore = transaction.objectStore('citas');
-        console.log(objectStore);
-
         let peticion = objectStore.add(nuevaCita);
         console.log(peticion);
         peticion.onsuccess = ()=>{
@@ -126,8 +124,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 
                 const botonBorrar = document.createElement('button');
                 botonBorrar.classList.add('borrar','btn','btn-danger');
-                botonBorrar.innerHTML = `<span aria-hidden='true'>X</span>`;
-                botonBorrar.addEventListener('click',borrarCita);
+                botonBorrar.innerHTML = `<span aria-hidden='true'>X</span> Borrar`;
+                //botonBorrar.addEventListener('click',borrarCita);
+                botonBorrar.onclick = borrarCita;
                 citaHTML.appendChild(botonBorrar);
 
                 //apend en el padre
@@ -136,25 +135,48 @@ document.addEventListener('DOMContentLoaded',()=>{
                 cursor.continue();
             }
             else{
-
-                if(!citas.firstChild){
-                    //cuando no hay registros
-                    headingAdministra.textContent = 'Agrega citas para comenzar';
-                    let listado = document.createElement('p');
-                    listado.classList.add('text-center');
-                    listado.textContent = 'No hay registros';
-                    citas.appendChild(listado);
-                }
-                else{
-                    headingAdministra.textContent = "Administra tus citas";
-                }
-                
+                comprobarCitas();
             }
         }
     }
 
+    function comprobarCitas(){
+        if(!citas.firstChild){
+            //cuando no hay registros
+            headingAdministra.textContent = 'Agrega citas para comenzar';
+            let listado = document.createElement('p');
+            listado.classList.add('text-center');
+            listado.textContent = 'No hay registros';
+            citas.appendChild(listado);
+        }
+        else{
+            headingAdministra.textContent = "Administra tus citas";
+        }
+    }
+
     function borrarCita(e){
-        console.log(e.target.parentElement.getAttribute('data-cita-id'));
+        /* let elementoBorrar;
+        if(e.target.classList.contains('borrar')){
+            elementoBorrar = e.target.parentElement;
+        }
+        else{
+            elementoBorrar = e.target.parentElement.parentElement;
+        }
+
+        citas.removeChild(elementoBorrar); */
+        const citaID = Number(e.target.parentElement.getAttribute('data-cita-id'));
+        let transaction = DB.transaction(['citas'],'readwrite');
+        
+        //esto nos retorna la base de datos
+        let objectStore = transaction.objectStore('citas');
+        let peticion = objectStore.delete(citaID);
+        transaction.oncomplete = ()=>{
+            mostrarCitas();
+            comprobarCitas();
+        }
+        
+
+        
     }
 });
 
